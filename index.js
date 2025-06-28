@@ -99,7 +99,7 @@ form.addEventListener(`submit`, function (event) {
   const backBtn = document.createElement('button');
   backBtn.classList.add(`button`)
   backBtn.id = 'backBtn';
-  backBtn.textContent = '← Back';
+  backBtn.textContent = '← Go Back';
 
   // Appending individual container to their parents
   resultelement.append(resultheading, resultContent)
@@ -123,7 +123,7 @@ form.addEventListener(`submit`, function (event) {
   // Form display when you submit and show the result
   form.style.display = `none`
   resultContainer.style.display = `block`
-  title.textContent = `E don show oo`
+  title.textContent = `Result Don Show oo`
   body.textContent = `See wetin you do this week `
   inputsfield.forEach(input => input.value = '');
 
@@ -152,7 +152,7 @@ function getstatusMessage(totalHours) {
   if (isfulltime) {
      return  `Na full time work status for the week oo! 🔥 Abeg try rest small make you no vanish 🙏`;
   } else if (totalHours >= 35) {
-    return  `Omor you really work this time around. Be like say you dey work from home or na freelance? Bcos you spend 35 or more hours`;
+    return  `Omor you really work this time around. Be like say you dey work from home or na freelance?`;
   } else if (totalHours >=25){
     return  `Be like say you enjoy yourself gan this week do, na part time work you do. E no reach full-time/freelance hours`;
   }
@@ -178,7 +178,7 @@ function getdayWorked(daysWorked) {
   if (daysWorked === 6) {
     return  `You no gree rest at all. ${daysWorked} days straight? `
   } else if (daysWorked >= 3) {
-    return `You balance am well. You show face for ${daysWorked} days`
+    return `You balance am well. You dey consistent for ${daysWorked} days`
   } else if (daysWorked >= 2) {
     return `You dey manage sha, at least you show face ${daysWorked} days`
   } else {
