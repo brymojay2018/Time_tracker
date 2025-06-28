@@ -4,6 +4,10 @@ const form = document.querySelector(`.form`)
 const inputsfield = document.querySelectorAll(`.day-input`)
 const allContainer = document.querySelector(`.all-container`)
 console.log(inputsfield)
+const resultContainer = document.querySelector(`.result-container`)
+const title = document.querySelector(`.headingTitle`)
+const body = document.querySelector(`.bodytext`)
+// const backton = document.getElementById(`backButton`)
 
 
 function updateDateTime() {
@@ -76,12 +80,15 @@ form.addEventListener(`submit`, function (event) {
   const status = getstatusMessage(totalHours)
 
   // The message that will show when user click submit buttons after entering their workhous for each day
-  const messageResult = `Na ${totalHours} hours you don hustle this week 🔥 You do average of ${average} hours/day. ${maximumdayHours} ${daysWork} ${status}`
+  const messageResult = `Na ${totalHours} hours you don hustle this week 🔥. You do average of ${average} hours/day. ${maximumdayHours}. ${daysWork}. ${status}. See you next week`
 
 
-  // Create the container
+  // Creating the result container with Javascript
   const resultContainer = document.createElement(`div`)
   resultContainer.classList.add(`result-container`)
+
+  const resultelement = document.createElement(`div`)
+  resultelement.classList.add(`result-body-content`)
 
   const resultheading = document.createElement(`h4`)
   resultheading.classList.add(`result`)
@@ -89,36 +96,53 @@ form.addEventListener(`submit`, function (event) {
   const resultContent = document.createElement(`p`)
   resultContent.classList.add(`result-content`)
 
-  resultContainer.append(resultheading, resultContent)
-  allContainer.append(resultContainer)
+  const backBtn = document.createElement('button');
+  backBtn.classList.add(`button`)
+  backBtn.id = 'backBtn';
+  backBtn.textContent = '← Back';
+
+  // Appending individual container to their parents
+  resultelement.append(resultheading, resultContent)
+  resultContainer.appendChild(resultelement)
+  resultContainer.appendChild(backBtn)
+  allContainer.appendChild(resultContainer)
+
 
   // Appending the content to the container childer
   resultheading.textContent = moodMessages
   resultContent.textContent = messageResult
-  
 
+  // Backbutton that return the form input after submit
+  backBtn.addEventListener('click', () => {
+    resultContainer.remove(); 
+    form.style.display = 'block';
+    title.textContent = `Track your week`
+    body.textContent = `See your total work hours, average hrs/day, top day, and work status `
+  });
+
+  // Form display when you submit and show the result
+  form.style.display = `none`
+  resultContainer.style.display = `block`
+  title.textContent = `E don show oo`
+  body.textContent = `See wetin you do this week `
   inputsfield.forEach(input => input.value = '');
-  
-
-  setTimeout(() => {
-        resultContainer.remove();
-  },70000);
 
 })
 
+// Individuals functions for different user input based on work hours input
 
 // function for mooodmessage h4
 function getmooodmessage(totalHours) {
   if (totalHours >= 50) {
     return `No kill yourself oo ! Over ${totalHours} hours. Wetin happen `  
   } else if (totalHours >= 40) {
-    return  `You be bravo I swear ajeh, work-aholic! Solid grind this week`
+    return  `You be bravo I swear ajeh ${totalHours} hours, work-aholic! Solid grind this week`
     
   } else if (totalHours >= 35) {
-    return `You self try and you no small! Keep it up`
+    return `You self try and you no small ${totalHours} hours this week! Keep it up`
     
   } else {
-    return  `Light week, recharge and show more energy next week oo`
+    return  `${totalHours} hours? Na light week, recharge and show more energy next week oo`
   }
 }
 
@@ -141,7 +165,7 @@ function getmaxmumHours(maxHours,topDay) {
     return  `You do nightshift for ${topDay}? ${maxHours} hours?? 😳 Na money matter dey your mind ehnn`;
        
   } else if (maxHours >= 10) {
-    return  `${topDay} carry big load o. You do ${maxHours} hours on ${topDay}? 💼 Idan chasing the bag`;
+    return  `You work most on ${topDay} for ${maxHours} hours 💼 Idan chasing the bag grinding`;
   } else {
     return `${topDay} no bad, ${maxHours} hours steady grind 👌🏾🧱`;
   }
@@ -163,14 +187,12 @@ function getdayWorked(daysWorked) {
 }
 
 // To validate user input workhours to match normal daily work hours
-
 inputsfield.forEach(function (inputfield) {
   inputfield.addEventListener('keyup', function () {
     inputfield.classList.add(`touched`)
     validateWorkhoursInputNumber();
   });
 });
-
 
 function validateWorkhoursInputNumber() {
   let workHours = true
@@ -194,6 +216,8 @@ function validateWorkhoursInputNumber() {
     
   }) 
 }
+
+
 
 
   
