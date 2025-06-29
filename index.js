@@ -80,7 +80,7 @@ form.addEventListener(`submit`, function (event) {
   const status = getstatusMessage(totalHours)
 
   // The message that will show when user click submit buttons after entering their workhous for each day
-  const messageResult = `Na ${totalHours} hours you don hustle this week 🔥. You do average of ${average} hours/day. ${maximumdayHours}. ${daysWork}. ${status}. See you next week`
+  const messageResult = `You worked for ${totalHours} hours this week 🔥. You did average of ${average} hours/day. ${maximumdayHours}. ${daysWork}. ${status}. See you next week`
 
 
   // Creating the result container with Javascript
@@ -123,8 +123,8 @@ form.addEventListener(`submit`, function (event) {
   // Form display when you submit and show the result
   form.style.display = `none`
   resultContainer.style.display = `block`
-  title.textContent = `Result Don Show oo`
-  body.textContent = `See wetin you do this week `
+  title.textContent = `Your Weekly Result`
+  body.textContent = `Here is your week breakdown `
   inputsfield.forEach(input => input.value = '');
 
 })
@@ -134,57 +134,57 @@ form.addEventListener(`submit`, function (event) {
 // function for mooodmessage h4
 function getmooodmessage(totalHours) {
   if (totalHours >= 50) {
-    return `No kill yourself oo ! Over ${totalHours} hours. Wetin happen `  
+    return `Careful! You logged over ${totalHours} hours this week. Make sure to rest. `  
   } else if (totalHours >= 40) {
-    return  `You be bravo I swear ajeh ${totalHours} hours, work-aholic! Solid grind this week`
+    return  `Impressive! ${totalHours} hours of solid work. You're a true workhorse.`
     
   } else if (totalHours >= 35) {
-    return `You self try and you no small ${totalHours} hours this week! Keep it up`
+    return `Great effort! ${totalHours} hours this week,  you're right on track.`
     
   } else {
-    return  `${totalHours} hours? Na light week, recharge and show more energy next week oo`
+    return  `${totalHours} hours logged. It was a lighter week. Recharge and aim higher next time.`
   }
 }
 
 // status messages
 function getstatusMessage(totalHours) {
-  const isfulltime = totalHours >= 40
+  const isfulltime = totalHours >= 40;
+  
   if (isfulltime) {
-     return  `Na full time work status for the week oo! 🔥 Abeg try rest small make you no vanish 🙏`;
+    return `You completed full-time hours this week! Great work — just remember to take breaks.`;
   } else if (totalHours >= 35) {
-    return  `Omor you really work this time around. Be like say you dey work from home or na freelance?`;
-  } else if (totalHours >=25){
-    return  `Be like say you enjoy yourself gan this week do, na part time work you do. E no reach full-time/freelance hours`;
+    return `Solid effort! You're close to full-time. Looks like you're in a freelance or flexible role.`;
+  } else if (totalHours >= 25) {
+    return `Looks like it was more of a part-time week. A bit lighter than full-time hours.`;
   }
 }
+
 
 // maximum hours worked
-function getmaxmumHours(maxHours,topDay) {
-
+function getmaxmumHours(maxHours, topDay) {
   if (maxHours >= 15) {
-    return  `You do nightshift for ${topDay}? ${maxHours} hours?? 😳 Na money matter dey your mind ehnn`;
-       
+    return `You worked exceptionally long hours on ${topDay} for ${maxHours} hours! That's serious dedication.`;
   } else if (maxHours >= 10) {
-    return  `You work most on ${topDay} for ${maxHours} hours 💼 Idan chasing the bag grinding`;
+    return `Your most productive day was ${topDay}, with ${maxHours} hours of focused work.`;
   } else {
-    return `${topDay} no bad, ${maxHours} hours steady grind 👌🏾🧱`;
+    return `Your most productive day was on ${topDay} for ${maxHours} hours. Keep the momentum going.`;
   }
-
 }
+
 
 // Days worked
 function getdayWorked(daysWorked) {
-
   if (daysWorked === 6) {
-    return  `You no gree rest at all. ${daysWorked} days straight? `
+    return `You worked consistently for ${daysWorked} days — great dedication, but don't forget to rest.`;
   } else if (daysWorked >= 3) {
-    return `You balance am well. You dey consistent for ${daysWorked} days`
+    return `Nice balance! You maintained a steady pace across ${daysWorked} days.`;
   } else if (daysWorked >= 2) {
-    return `You dey manage sha, at least you show face ${daysWorked} days`
+    return `Not bad — you showed up for ${daysWorked} days. Small progress is still progress.`;
   } else {
-    return `Just ${daysWorked} days? e small oo. Try pull up more next time.`
+    return `Only ${daysWorked} day logged. Consider showing up more consistently next week.`;
   }
 }
+
 
 // To validate user input workhours to match normal daily work hours
 inputsfield.forEach(function (inputfield) {
